@@ -285,11 +285,11 @@ read_input1() {
   while true; do
     show_menu1
     local choice
-    read -p "Enter your choice [1-4]: " choice
+    read -p "Enter your choice [1-7]: " choice
     case $choice in
         1) create_swap ;;
         2) download_rocketpool && install_rocketpool;;
-	      3) secure_ssh;;
+	3) secure_ssh;;
         4) unattended_upgrades;;
         5) firewall;;
         6) reboot_node;;
