@@ -57,7 +57,7 @@ create_swap() {
   echo "" # Spacer
 }
 
-#test on x86 and ARM
+
 download_rocketpool() {
   cpu_arc=$(uname -m)
 
@@ -270,39 +270,6 @@ ______           _        _    ______           _
 }
 
 show_menu1() {
-    echo "Choose a function to execute:"
-    echo "1. Create a swapfile. This function will create a swapfile and set it up"
-    echo "2. Install Rocketpool. This function will install the Smartnode package."
-    echo "3. Make the recomended changes to the sshd_config according to the Rocketpool documentation"
-    echo "4. Enable unattended_upgrades according to the Rocketpool documentation"
-    echo "5. Enable and configure the ufw firewall according to the Rocketpool documentation"
-    echo "6. Reboot the node" 
-    echo "7. Exit"
-    }
-
-# Function to read user input and execute corresponding function
-read_input1() {
-  while true; do
-    show_menu1
-    local choice
-    read -p "Enter your choice [1-7]: " choice
-    case $choice in
-        1) create_swap ;;
-        2) download_rocketpool && install_rocketpool;;
-	3) secure_ssh;;
-        4) unattended_upgrades;;
-        5) firewall;;
-        6) reboot_node;;
-        7) exit 0 ;;
-        *) echo -e "Invalid option. Please try again..." && sleep 1 ;;
-    esac
-  read -p "(press enter to continue)" temp
-  clear
-  done
-    }
-
-
-show_menu2() {
     clear
     echo "Choose a function to execute:"
     echo "1. Run the setup script from scrach, Make a swapfile, install Rocketpool and make the recomended changes to the sshd_config."
@@ -314,12 +281,12 @@ show_menu2() {
     echo "3. Exit"
 }
 
-read_input2() {
+read_input1() {
     local choice
     read -p "Enter your choice [1-3]: " choice
     case $choice in
         1) show_disro && create_swap && download_rocketpool && install_rocketpool && secure_ssh && unattended_upgrades && firewall && install_done && reboot_node;;
-        2) clear && read_input1 ;;
+        2) clear && read_input2 ;;
         3) exit 0 ;;
         *) echo -e "Invalid option. Please try again..." && sleep 1 ;;
     esac
@@ -327,9 +294,35 @@ read_input2() {
   clear
 }
 
+show_menu2() {
+    echo "Choose a function to execute:"
+    echo "1. Create a swapfile. This function will create a swapfile and set it up"
+    echo "2. Install Rocketpool. This function will install the Smartnode package."
+    echo "3. Make the recomended changes to the sshd_config according to the Rocketpool documentation"
+    echo "4. Enable unattended_upgrades according to the Rocketpool documentation"
+    echo "5. Enable and configure the ufw firewall according to the Rocketpool documentation"
+    echo "6. Reboot the node" 
+    echo "7. Exit"
+    }
 
-# Loop until user decides to exit
-while true; do
+# Function to read user input and execute corresponding function
+read_input2() {
+  while true; do
     show_menu2
-    read_input2
-done
+    local choice
+    read -p "Enter your choice [1-7]: " choice
+    case $choice in
+        1) create_swap ;;
+        2) download_rocketpool && install_rocketpool;;
+        3) secure_ssh;;
+        4) unattended_upgrades;;
+        5) firewall;;
+        6) reboot_node;;
+        7) exit 0 ;;
+        *) echo -e "Invalid option. Please try again..." && sleep 1 ;;
+    esac
+  read -p "(press enter to continue)" temp
+  clear
+  done
+    }
+
