@@ -326,3 +326,8 @@ read_input2() {
   done
     }
 
+# Loop until user decides to exit
+while true; do
+    show_menu1
+    read_input1
+done
