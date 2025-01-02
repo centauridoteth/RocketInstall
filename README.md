@@ -9,9 +9,10 @@ RocketInstall is a comprehensive bash script for setting up a Rocket Pool Ethere
 1. Clone the repository or download the script:
    
    wget https://raw.githubusercontent.com/centauridoteth/RocketInstall/refs/heads/main/Rocketinstall.sh -O rocketinstall.sh
+   
    chmod +x rocketinstall.sh
 
-2. Run the script:
+3. Run the script:
 
 ./rocketinstall.sh
 
