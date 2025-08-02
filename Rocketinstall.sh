@@ -75,7 +75,7 @@ download_rocketpool() {
   else
     echo "~/bin/rocketpool not installed, Installing..."
     mkdir -p ~/bin
-    url="https://github.com/rocket-pool/smartnode-install/releases/latest/download/rocketpool-cli-linux-"
+    url="https://github.com/rocket-pool/smartnode/releases/latest/download/rocketpool-cli-linux-"
     if [ "$cpu_arc" = "x86_64" ]; then
       url+="amd64"
     else
